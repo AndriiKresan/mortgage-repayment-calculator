@@ -1,0 +1,174 @@
+@font-face {
+  font-family: PlusJakartaSans;
+  src: url(fonts/PlusJakartaSans-Medium.ttf);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: hsl(202, 86%, 94%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: PlusJakartaSans, sans-serif;
+}
+
+#content {
+  background-color: white;
+  width: 65%;
+  aspect-ratio: 1.65;
+  border-radius: 25px;
+  display: flex;
+}
+
+#content > div {
+  height: 100%;
+  width: 50%;
+}
+
+.left-side {
+  display: flex;
+  flex-direction: column;
+  padding: 50px 30px;
+}
+
+.left-side .title {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.left-side h1 {
+  color: hsl(202, 55%, 16%);
+  font-size: 24px;
+}
+
+.left-side legend {
+  color: hsl(200, 24%, 40%);
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.button-clear {
+  border: none;
+  background-color: transparent;
+  text-decoration: underline;
+  font-size: 16px;
+  color: hsl(200, 24%, 40%);
+}
+
+.left-side .input-box {
+  height: 50px;
+  border: 1px solid hsl(200, 24%, 40%);
+  border-radius: 5px;
+  display: flex;
+}
+
+.left-side input[type=number] {
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  width: 100%;
+  padding: 0 15px 0 15px;
+}
+
+.left-side input:focus {
+  outline: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.left-side .span-box {
+  background-color: hsl(202, 86%, 94%);
+  border-radius: 5px;
+  padding: 0 15px 0 15px;
+  color: hsl(200, 24%, 40%);
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.left-side .container {
+  display: flex;
+  gap: 25px;
+} 
+.left-side .container > div {
+  width: 100%;
+}
+
+.left-side .error {
+  color: red;
+  font-size: 12px;
+  margin: 5px 0 5px 0;
+  /* visibility: hidden; */
+}
+
+.left-side .radio-box {
+  align-items: center;
+  padding-left: 20px;
+  gap: 20px;
+  font-weight: 700;
+  color:hsl(202, 55%, 16%);
+  font-size: 20px;
+}
+
+.left-side .radio-box {
+  margin-bottom: 10px;
+}
+
+.left-side .radio-box input {
+  transform: scale(1.5);
+}
+
+.left-side .calculate-button {
+  height: 60px;
+  width: 80%;
+  background-color: yellow;
+  border:none;
+  border-radius: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.right-side {
+  background-color: hsl(202, 55%, 16%);
+  border-radius: 0 25px 25px 75px;
+  padding: 0 30px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 15px;
+}
+
+.right-side h1 {
+  font-weight: 700;
+  font-size: 24px;
+  color: white;
+}
+
+.right-side p {
+  color: hsl(200, 26%, 54%);
+  font-weight: 500;
+}
+
+.hidden {
+  visibility: hidden;
+}

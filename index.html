@@ -3,9 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
   <title>Mortgage repayment calculator</title>
 </head>
 <body>
-  
+
+  <div id="content">
+    <div class="left-side">
+      <div class="title">
+        <h1>Mortgage Calculator</h1>
+        <button class="button-clear">Clear All</button>
+      </div>
+      <legend>Mortgage Amount</legend>
+      <div class="input-box">
+        <div class="span-box"><span>$</span></div><input type="number" class="input-amount">
+      </div>
+      <p class="error">This field is required</p>
+      <div class="container">
+        <div>
+          <legend>Mortgage Term</legend>
+          <div class="input-box">
+            <input type="number" class="input-term"><div class="span-box"><span>years</span></div>
+          </div>
+          <p class="error">This field is required</p>
+        </div>
+        <div>
+          <legend>Mortgage Rate</legend>
+          <div class="input-box">
+            <input type="number" class="input-rate"><div class="span-box"><span>%</span></div>
+          </div>
+          <p class="error">This field is required</p>
+        </div>
+      </div>
+      <legend>Mortgage Type</legend>
+      <div class="input-box radio-box">
+        <input type="radio" name="type" checked id="repayment"><label for="repayment">Repayment</label>
+      </div>
+      <div class="input-box radio-box">
+        <input type="radio" name="type" id="interest"><label for="interest">Interests Only</label>
+      </div>
+      <p class="error">This field is required</p>
+      <button class="calculate-button"><img src="images/icon-calculator.svg" alt="">Calculate Repayments</button>
+    </div>
+    <div class="right-side">
+      <img src="images/illustration-empty.svg" alt="">
+      <h1>Results shown here</h1>
+      <p>Complete the form and click "calculate repayments" to see what your monthly repayments would be.</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
