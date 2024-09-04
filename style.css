@@ -65,7 +65,12 @@ body {
   color: hsl(200, 24%, 40%);
 }
 
-.left-side .input-box {
+.button-clear:hover {
+  cursor: pointer;
+  color: hsl(202, 55%, 16%);
+}
+
+.input-box {
   height: 50px;
   border: 1px solid hsl(200, 24%, 40%);
   border-radius: 5px;
@@ -73,11 +78,17 @@ body {
   display: flex;
 }
 
+.input-box span {
+  color: hsl(200, 24%, 40%);
+  font-weight: 600;
+}
+
 .left-side input[type=number] {
   border: none;
   font-size: 20px;
   width: 100%;
   padding: 0 15px 0 15px;
+  cursor: pointer;
 }
 
 .input-amount {
@@ -125,24 +136,13 @@ input::-webkit-inner-spin-button {
   font-weight: 700;
   color:hsl(202, 55%, 16%);
   font-size: 20px;
-}
-
-.left-side .radio-box {
   margin-bottom: 10px;
   background-color: white;
-  /* align-items: stretch; */
   position: relative;
 }
 
 .left-side .radio-box input {
   visibility: hidden;
-  /* transform: scale(1.5); */
-  /* accent-color: yellow; */
-  /* height: 15px;
-  width: 15px; */
-  /* display: flex;
-  justify-content: stretch;
-  align-items: stretch; */
 }
 
 .left-side .radio-box input::after {
@@ -170,9 +170,10 @@ input::-webkit-inner-spin-button {
   height: 100%;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
-.left-side .calculate-button {
+.calculate-button {
   height: 60px;
   width: 80%;
   background-color: yellow;
@@ -185,6 +186,10 @@ input::-webkit-inner-spin-button {
   font-size: 20px;
   font-weight: 700;
   color: hsl(202, 55%, 16%);
+}
+.calculate-button:hover {
+  background-color: rgba(255, 255, 0, 0.5);
+  cursor: pointer;
 }
 
 .right-side {
@@ -230,5 +235,14 @@ input::-webkit-inner-spin-button {
 .bc-dark-yellow {
   background-color: rgba(255,255,0,0.1) !important;
   border-color: yellow !important;
+}
+
+.hover-input-number {
+  border-color: hsl(202, 55%, 16%);
+
+}
+
+.hover-input-radio {
+  border-color: yellow;
 }
 
