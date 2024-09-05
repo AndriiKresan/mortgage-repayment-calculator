@@ -18,21 +18,21 @@
       <div class="input-box amount-box">
         <span>$</span><input type="number" class="input-amount">
       </div>
-      <p class="error error-amount">This field is required</p>
+      <p class="error error-amount hidden">This field is required</p>
       <div class="container">
         <div>
           <legend>Mortgage Term</legend>
           <div class="input-box term-box">
             <input type="number" class="input-term"><span>years</span>
           </div>
-          <p class="error error-term">This field is required</p>
+          <p class="error error-term hidden">This field is required</p>
         </div>
         <div>
           <legend>Interest Rate</legend>
           <div class="input-box rate-box">
             <input type="number" class="input-rate"><span>%</span>
           </div>
-          <p class="error error-rate">This field is required</p>
+          <p class="error error-rate hidden">This field is required</p>
         </div>
       </div>
       <legend>Mortgage Type</legend>
@@ -42,13 +42,26 @@
       <div class="input-box radio-box interest">
         <input type="radio" name="type" id="interest"><label for="interest">Interests Only</label>
       </div>
-      <p class="error error-type">This field is required</p>
+      <p class="error error-type hidden">This field is required</p>
       <button class="calculate-button"><img src="images/icon-calculator.svg" alt="">Calculate Repayments</button>
     </div>
     <div class="right-side">
-      <img src="images/illustration-empty.svg" alt="">
-      <h1>Results shown here</h1>
-      <p>Complete the form and click "calculate repayments" to see what your monthly repayments would be.</p>
+      <div class="result-screen display-none">
+        <h1>Your results</h1>
+        <p>Your results are shown below based on the informetion you provided. To adjust the results, edit the form and click "calculate repayments" again.</p>
+        <div class="result">
+          <p class="monthly-label">Your monthly repayments</p>
+          <h2 class="monthly-repayment">$000.00</h2>
+          <hr>
+          <p class="total-label">Total you'll repay over the term</p>
+          <h3 class="total-repayment">$000.00</h3>
+        </div>
+      </div>
+      <div class="info-screen">
+        <img src="images/illustration-empty.svg" alt="calculator">
+        <h1>Results shown here</h1>
+        <p>Complete the form and click "calculate repayments" to see what your monthly repayments would be.</p>
+      </div>
     </div>
   </div>
   <script src="script.js"></script>

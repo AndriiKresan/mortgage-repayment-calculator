@@ -31,17 +31,26 @@ const type = [
   },
 ];
 
+const infoScreen = document.querySelector(".info-screen");
+const resultScreen = document.querySelector(".result-screen");
+
+const buttonClear = document.querySelector(".button-clear");
 const button_calculate = document.querySelector(".calculate-button");
+
+const monthlyLabel = document.querySelector(".monthly-label");
+const monthlyRepayment = document.querySelector(".monthly-repayment");
+const totalRepayment = document.querySelector(".total-repayment");
+const totalLabel = document.querySelector(".total-label");
 
 [amount, term, rate].forEach((item) => {
   item.input.addEventListener("focus", () => {
-    toggle_focus_style(item.box);
-    style_error(item, false);
+    toggleFocusInput(item.box);
+    styleError(item, false);
   });
 });
 [amount, term, rate].forEach((item) => {
   item.input.addEventListener("blur", () => {
-    toggle_focus_style(item.box);
+    toggleFocusInput(item.box);
   });
 });
 
@@ -66,13 +75,13 @@ const button_calculate = document.querySelector(".calculate-button");
 type[0].input.addEventListener("click", () => {
   type[0].box.classList.add("bc-dark-yellow");
   type[1].box.classList.remove("bc-dark-yellow");
-  hide_element(type[0].error);
+  showElement(type[0].error, false);
 });
 
 type[1].input.addEventListener("click", () => {
   type[1].box.classList.add("bc-dark-yellow");
   type[0].box.classList.remove("bc-dark-yellow");
-  hide_element(type[0].error);
+  showElement(type[0].error, false);
 });
 
 [type[0], type[1]].forEach((item) => {
@@ -87,20 +96,40 @@ type[1].input.addEventListener("click", () => {
   });
 });
 
+buttonClear.addEventListener("click", () => {
+  clearForm();
+})
+
 button_calculate.addEventListener("click", () => {
-  validate_amount();
-  validate_term();
-  validate_rate();
-  validate_type();
-  console.log("clicked");
+  const valid = [validAmount(), validTerm(), validRate(), validType()].every(item => item);
+
+  if (valid) {
+    const r = rate.input.value / 100 / 12;
+    const N = term.input.value * 12;
+    const P = amount.input.value;
+    const monthlyAmount = (P * r * (1 + r) ** N) / ((1 + r) ** N - 1);
+    const totalAmount = monthlyAmount * N;
+    displayElement(infoScreen, false);
+    displayElement(resultScreen, true);
+    if (type[0].input.checked) {
+      monthlyLabel.textContent = "Your monthly repayments";
+      monthlyRepayment.textContent = "$" + monthlyAmount.toFixed(2);
+      totalLabel.textContent = "Total you'll repay over the term";
+      totalRepayment.textContent = "$" + totalAmount.toFixed(2);
+    } else if (type[1].input.checked) {
+      const monthlyInterest = (totalAmount - P) / N;
+      const totalInterest = totalAmount - P;
+      monthlyLabel.textContent = "Your monthly interest amount";
+      monthlyRepayment.textContent = "$" + monthlyInterest.toFixed(2);
+      totalLabel.textContent = "Total interest amount you'll pay over the term";
+      totalRepayment.textContent = "$" + totalInterest.toFixed(2);
+    }
+  }
 });
 
-function hide_element(element) {
-  element.classList.remove("visible");
-}
-
-function show_element(element) {
-  element.classList.add("visible");
+function showElement(element, state) {
+  if (state) element.classList.remove("hidden");
+  else element.classList.add("hidden");
 }
 
 function hoverInputNumber(element, state) {
@@ -112,58 +141,79 @@ function hoverInputRadio(element, state) {
   else element.classList.remove("hover-input-radio");
 }
 
-function toggle_focus_style(element) {
+function toggleFocusInput(element) {
   element.classList.toggle("focused-input");
 }
 
-function error_box(element, state) {
+function styleErrorBox(element, state) {
   if (state) element.classList.add("error-input");
   else element.classList.remove("error-input");
 }
 
-function input_empty(input) {
+function inputEmpty(input) {
   return !input.value;
 }
 
-function style_error(obj, state) {
+function styleError(obj, state) {
   if (state) {
-    error_box(obj["box"], true);
+    styleErrorBox(obj["box"], true);
     obj["span"].classList.add("white-text");
-    show_element(obj["error"]);
+    showElement(obj["error"], true);
   } else {
-    error_box(obj["box"], false);
+    styleErrorBox(obj["box"], false);
     obj["span"].classList.remove("white-text");
-    hide_element(obj["error"]);
+    showElement(obj["error"], false);
   }
 }
 
-function validate_amount() {
-  if (input_empty(amount["input"]) || amount["input"].value <= 0) {
-    style_error(amount, true);
+function validAmount() {
+  if (inputEmpty(amount["input"]) || amount["input"].value <= 0) {
+    styleError(amount, true);
     return false;
   }
   return true;
 }
 
-function validate_term() {
-  if (input_empty(term["input"]) || term["input"].value <= 0) {
-    style_error(term, true);
-    return false;
-  }
-  return false;
-}
-
-function validate_rate() {
-  if (input_empty(rate["input"]) || rate["input"].value <= 0) {
-    style_error(rate, true);
+function validTerm() {
+  if (inputEmpty(term["input"]) || term["input"].value <= 0) {
+    styleError(term, true);
     return false;
   }
   return true;
 }
 
-function validate_type() {
+function validRate() {
+  if (inputEmpty(rate["input"]) || rate["input"].value <= 0) {
+    styleError(rate, true);
+    return false;
+  }
+  return true;
+}
+
+function validType() {
   if (type[0].input.checked || type[1].input.checked) {
     return true;
-  } else show_element(type[0].error);
+  } else showElement(type[0].error, true);
   return false;
+}
+
+function displayElement(element, state) {
+  if (state) element.classList.remove("display-none");
+  else element.classList.add("display-none");
+}
+
+function clearForm() {
+  amount.input.value = "";
+  term.input.value = "";
+  rate.input.value = "";
+  type[0].input.checked = false;
+  type[0].box.classList.remove("bc-dark-yellow");
+  type[1].input.checked = false;
+  type[1].box.classList.remove("bc-dark-yellow");
+  displayElement(infoScreen, true);
+  displayElement(resultScreen, false);
+  [amount, term, rate].forEach((item) => {
+    styleError(item, false);
+  })
+  showElement(type[0].error, false);
 }
