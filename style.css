@@ -40,13 +40,13 @@ body {
   padding: 50px 30px;
 }
 
-.left-side .title {
+.title {
   display: flex;
   justify-content: space-between;
   margin-bottom: 40px;
 }
 
-.left-side h1 {
+.title h1 {
   color: hsl(202, 55%, 16%);
   font-size: 24px;
 }
@@ -116,11 +116,11 @@ input::-webkit-inner-spin-button {
   padding: 0 15px;
 }
 
-.left-side .container {
+.container {
   display: flex;
   gap: 25px;
 } 
-.left-side .container > div {
+.container > div {
   width: 100%;
 }
 
@@ -137,7 +137,6 @@ input::-webkit-inner-spin-button {
   font-weight: 700;
   color:hsl(202, 55%, 16%);
   font-size: 20px;
-  /* margin-bottom: 10px; */
   background-color: white;
   position: relative;
 }
@@ -265,6 +264,71 @@ input::-webkit-inner-spin-button {
   justify-content: center;
   gap: 10px;
   text-align: center;
+}
+
+@media screen and (max-width: 600px){
+body {
+  align-items: start;
+}
+
+#content {
+  width: 100%;
+  flex-direction: column;
+}
+
+#content > div {
+  width: 100%;
+  height: auto;
+}
+
+.left-side {
+  padding: 30px 20px;
+}
+
+.title {
+  flex-direction: column;
+  margin-bottom: 20px;
+  align-items: start;
+}
+
+.title h1 {
+  margin-bottom: 10px;
+}
+
+.container {
+  flex-direction: column;
+  gap: 0;
+}
+
+.calculate-button {
+  width: 100%;
+}
+
+.right-side {
+  border-radius: 0;
+  padding: 40px 20px;
+}
+
+.result-screen {
+  padding-top: 0;
+}
+
+.result-screen > p {
+  margin-bottom: 30px;
+}
+
+.result {
+  padding: 30px 15px;
+  height: auto;
+}
+
+.result h2 {
+  font-size: 40px;
+}
+
+.result hr {
+  margin: 15px 0;
+}
 }
 
 .hidden {
